@@ -34,4 +34,8 @@ public class EtudiantListController {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selected", event.getObject().toString()));
 		System.out.println("item selected : " + event.getObject().toString());
 	}
+	
+	public int testMethod() {
+		return 2;
+	} 
 }
