@@ -36,4 +36,9 @@ public class EnseignantListController {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selected", event.getObject().toString()));
 		System.out.println("item selected : " + event.getObject().toString());
 	}	
+	
+	public void simpleMethode() {
+		System.out.println("Bonjour tout le monde !");
+	}
+		
 }
