@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Application web securisee de chat multiutilisateur</title>
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="/css/materialize.min.css" />
+	<script src="/js/materialize.min.js"></script>
+</h:head>
+<h:body>
+	<noscript>
+		<h2>Votre navigateur ne supporte pas le Javascript</h2>
+	</noscript>
+
+	<div class="navbar-fixed">
+		<nav>
+		<div class="nav-wrapper">
+			<a href="/" style="padding-left: 15px" class="brand-logo">Chat
+				Room </a>
+			<ul class="right hide-on-med-and-down">
+				<!-- <li><a href="/" target="_blank">{#utilisateurConnecte.username}</a></li> -->
+				<li><a href="/" target="_blank">Bienvenu(e) <h:outputText
+							value="#{utilisateurConnecte.user.prenom}"></h:outputText>
+						&nbsp;&nbsp;&nbsp; <h:outputText
+							value="#{utilisateurConnecte.user.nom}"></h:outputText>
+				</a></li>
+				<li><a href="/logout">Deconnexion</a></li>
+			</ul>
+		</div>
+		</nav>
+	</div>
+	<div id="username-page">
+		<div class="username-page-container" style="margin-right: 20px">
+			<form id="usernameForm" name="usernameForm">
+				<div class="form-group">
+					<p:inputText type="hidden" id="name"
+						value="#{utilisateurConnecte.username}"
+						disabled="#{not(empty utilisateurConnecte.username)}" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="accent username-submit">Messages
+						texte</button>
+				</div>
+
+			</form>
+		</div>
+		<div class="username-page-container">
+			<form id="videoForm" name="videoForm">
+				<div class="form-group">
+					<p:inputText type="hidden" id="name"
+						value="#{utilisateurConnecte.username}"
+						disabled="#{not(empty utilisateurConnecte.username)}" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="primary">Mode audio and video</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="chat-page" class="hidden">
+		<div class="chat-container">
+			<div class="chat-header">
+				<h2>Groupe de discussion</h2>
+			</div>
+			<div class="connecting">Connexion en cours...</div>
+			<ul id="messageArea">
+
+			</ul>
+			<form id="messageForm" name="messageForm" nameForm="messageForm">
+				<div class="form-group">
+					<div class="input-group clearfix">
+						<input type="text" id="message"
+							placeholder="Ecrivez un message..." autocomplete="off"
+							class="form-control" />
+						<button type="submit" class="primary">Envoyer</button>
+
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="video-page" class="hidden">
+		<div class="chat-container">
+			<div class="chat-header">
+				<h2>Appel audio / video</h2>
+			</div>
+			<ul id="videoArea">				
+				<button type="button" id="btnShowCamera" class="primary">Show Webcam</button>
+				<video id="remoteview" autoplay="autoplay"></video>
+				<video id="selfview" autoplay="autoplay"></video>
+				<button type="button" id="makeCall">Make Call</button>				
+				<script>
+					var socket = io();
+				</script>			
+			</ul>
+		</div>
+	</div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="/js/main.js"></script>
+</h:body>
+</html>
